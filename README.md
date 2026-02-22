@@ -15,9 +15,9 @@ Step by Step:
 * Após adicionar algum texto, deve-se enviar para o repositório remoto no GitHub:
 
 
-git add .				(adicionar as alterações)
+git add .				        (adicionar as alterações)
 git commit -m "meu commit"		(adicionar o comentário das alterações)
-git push				(enviando para o gitHub)
+git push				        (enviando para o gitHub)
 
 
 
