@@ -20,6 +20,8 @@ git commit -m "meu commit"		(adicionar o comentário das alterações)
 git push				        (enviando para o gitHub)
 
 
+- quando for fazer pela primeira vez o commit, provavel que tenha que configurar o email e username, só reguir o exemplo que o proprio terminal do git informa. (exemplo no print config global)
+
 
 
 
