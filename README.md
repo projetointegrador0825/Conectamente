@@ -30,3 +30,6 @@ git push				        (enviando para o gitHub)
 
 Eu livia já fiz meu primeiro commit espero meus colegas realizarem também, assinar a abaixo:
 Livia Castro
+
+Eu Cinthia fiz meu primeiro commit
+Cinthia Pimentel
