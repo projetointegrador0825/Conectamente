@@ -33,3 +33,6 @@ Livia Castro
 
 Eu Cinthia fiz meu primeiro commit
 Cinthia Pimentel
+
+Eu Pedro já fiz meu primeiro commit
+Pedro Vinícius
