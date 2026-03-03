@@ -41,3 +41,19 @@ Eu Ryan fiz meu primeiro commit
 
 Eu, Caio Lemos, fiz meu primeiro commit.
 Caio Lemos
+
+IMPORTANTE
+
+git add . = é para salvar todas as alterações que tiver feito
+git add nome do arquivo = salva apenas o arquivo alterado 
+
+
+SEMPRE MANTER O REPOSITORIO LOCAL ATUALIZADO COM O GIT HUB.
+
+USAR  git pull PARA BAIXAR AS ALTERAÇÕES MANTENDO O REPOSITORIO ATUALIZADO.
+
+Segue passo a passo para commitar os dados. 
+
+git add .				        (adicionar as alterações)
+git commit -m "adicionar o comentário das alterações"  (é necessario comentario)
+git push				        (enviando para o gitHub)
