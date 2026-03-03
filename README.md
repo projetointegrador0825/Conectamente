@@ -38,3 +38,6 @@ Eu Pedro já fiz meu primeiro commit
 Pedro Vinícius
 
 Eu Ryan fiz meu primeiro commit
+
+Eu, Caio Lemos, fiz meu primeiro commit.
+Caio Lemos
