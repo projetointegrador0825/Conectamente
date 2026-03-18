@@ -10,8 +10,6 @@ Cinthia Pimentel da Silva
 
 Livia Castro Alves da Silva
 
-Pedro Vinicius Paulo de Macedo
-
 Ryan Alves de Araujo
 
 
