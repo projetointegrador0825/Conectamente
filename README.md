@@ -40,8 +40,14 @@ Tarefa dois: Ryan Alves
 
 Tarefa três: Cinthia Pimentel
 
-Segundo o Informe II: Saúde Mental, segunda publicação do Ciclo de Informes sobre a situação da juventude brasileira, produzido por pesquisadores da Fiocruz.A população jovem é a que mais sofre internações relacionadas a problemas de saúde mental no Brasil, mas também é a que menos busca atendimento na Atenção Primária à Saúde (APS).Entre o jovens de 20 a 29 anos, a taxa de internação por transtornos mentais é mais alta do que a da população geral, em especial entre jovens de 25 a 29 anos, para os quais a taxa é de 719,7 casos para cada 100 mil habitantes.O objetivo é transformar esses dados em informações relevantes e apresentar de forma clara destacando a faixa etária mais afetada.
-https://agencia.fiocruz.br/sites/agencia.fiocruz.br/files/Informe%20II%20-%20Sa%C3%BAde%20Mental%20-%20Informes%20sobre%20situa%C3%A7%C3%A3o%20de%20sa%C3%BAde%20da%20juventude%20brasileira%20n2_2025%20(2).pdf
+Segundo o Informe II: Saúde Mental, segunda publicação do Ciclo de Informes sobre a situação da juventude brasileira, produzido por pesquisadores da Fiocruz.
+A população jovem é a que mais sofre internações relacionadas a problemas de saúde mental no Brasil, mas também é a que menos busca atendimento na Atenção Primária
+à Saúde (APS).Entre o jovens de 20 a 29 anos, a taxa de internação por transtornos mentais é mais alta do que a da população geral, em especial entre jovens de 25
+a 29 anos, para os quais a taxa é de 719,7 casos para cada 100 mil habitantes.O objetivo é transformar esses dados em informações relevantes e apresentar de forma 
+clara destacando a faixa etária mais afetada.
+
+https://agencia.fiocruz.br/sites/agencia.fiocruz.br/files/Informe%20II%20-%20Sa%C3%BAde%20Mental%20-
+%20Informes%20sobre%20situa%C3%A7%C3%A3o%20de%20sa%C3%BAde%20da%20juventude%20brasileira%20n2_2025%20(2).pdf
 
 
 
