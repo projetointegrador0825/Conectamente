@@ -30,11 +30,27 @@ Transtornos como depressão, ansiedade, estresse e bipolaridade não afetam apen
  
  OPAS Saúde mentalhttps://www.paho.org/pt/topicos/saude-mental
  
+
+
 Tarefa dois: Ryan Alves
 
+Objetivo: coletar dados, em meta-análise, de estudos de prevalência de transtornos como depressão e ansiedade na população brasileira, tratá-los e apresentá-los por meio de ferramentas de análise.
 
+Idades em amostragens: como o foco é na população jovem brasileira, o recorte dos dados se dará entre idivíduos de idades de 15 a 29 anos.
 
+Links:
 
+Para fundamentar minha meta-análise sobre a prevalência de transtornos mentais na população jovem brasileira (15 a 29 anos), extrairei deste artigo os dados comparativos da Pesquisa Nacional de Saúde (PNS) de 2013 e 2019, focando especificamente no recorte de adultos jovens (18 a 24 anos) que apresentou o crescimento mais acentuado de depressão no período, saltando de 3,7% para 10,3%. Coletarei as estatísticas obtidas via questionário PHQ-9 para alimentar minhas ferramentas de análise, correlacionando o aumento de 178,4% nessa faixa etária com variáveis como a falta de ocupação profissional, o ambiente urbano e comportamentos de risco (sedentarismo e tabagismo), permitindo uma visão precisa de como a recessão econômica impactou a saúde mental desse grupo demográfico específico.
+
+https://www.scielo.br/j/csp/a/XBmqFfsR6wbLzMwrKgKG5sp/?format=html&lang=en
+
+Outros links:
+
+https://data.humdata.org/dataset/who-data-for-brazil/resource/abb9fb11-66a5-42ed-a5d7-e9dd6a3ceca8
+
+https://link.springer.com/article/10.1186/s13104-023-06323-0
+
+https://www.scielo.br/j/cadsc/a/B9rPYyB8NxTp8dghq4QnGnH/?format=html&lang=pt
 
 
 
