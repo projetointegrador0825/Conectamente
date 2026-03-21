@@ -1,6 +1,6 @@
-Projeto-integrador-grupo26
+# Projeto-integrador-grupo26
 
-Tema do projeto: Mapeamento da Saúde Mental na Juventude
+# Tema do projeto: Mapeamento da Saúde Mental na Juventude
 
 Integrantes:
 
@@ -13,12 +13,12 @@ Livia Castro Alves da Silva
 Ryan Alves de Araujo
 
 
-Objetivo: 
+# Objetivo: 
 
 A saúde mental no Brasil enfrenta um cenário crítico, especialmente entre os jovens Dados da OMS mostram que o país lidera os rankings de ansiedade e depressão na América Latina, e essa população é a mais afetada. O objetivo é analisar a prevalência de transtornos mentais (ansiedade, depressão e estresse) em jovens de 15 a 29 anos para identificar quais subgrupos são mais vulneráveis.
 
 
-Planejamento das tarefas:
+# Planejamento das tarefas:
 
 Tarefa um: Livia Castro
 
@@ -52,14 +52,11 @@ https://agencia.fiocruz.br/sites/agencia.fiocruz.br/files/Informe%20II%20-%20Sa%
 
 
 
-
-
 Tarefa quatro: Caio Gabriel
 
 Saúde Mental da Juventude (15-29 anos)
 
 Objetivo: Transformar dados epidemiológicos em informações estratégicas para políticas públicas de saúde mental, focando em transtornos de humor, depressão e ansiedade no Brasil.
-
 Eixos de Análise:
 
 Idade: Divisão em três subgrupos (15-19, 20-24 e 25-29 anos), com pico de gravidade na fase adulta jovem.
@@ -70,10 +67,7 @@ Geografia: Foco na Região Sul e DF, que superam as médias nacionais de interna
 
 Interseccionalidade: Vulnerabilidade crítica de jovens indígenas (suicídio) e negros (acesso ao serviço).
 
-Base de Dados:
-
-Cruzamento de dados do DataSUS (SIH, SIM e SISAB) para internações e óbitos, com a PNS/IBGE para autodeclarações e diagnósticos.
-
+Base de Dados: Cruzamento de dados do DataSUS (SIH, SIM e SISAB) para internações e óbitos, com a PNS/IBGE para autodeclarações e diagnósticos.
 
 Fontes:
 
@@ -88,8 +82,25 @@ https://pysus.readthedocs.io/en/latest/databases/CNES.html
 
 
 
+# Ideia inicial do dashboard:
 
-Ideia inicial do dashboard:
+1 - Tipos de transtorno (porcentagem):
+
+- Definir quais transtornos vamos colocar baseado em dados do SUS/CAPS [fontes acima]
+
+2 - Quantidade de pessoas afetadas no Brasil:
+
+• dados na OMS/SUS/CAPS
+
+• Verificar por regiões (Norte, sul, suldestes, nordeste e cetro-oeste)
+
+3 - Faixa Etarias mais atingidas:
+
+• Faixa etária do projeto de 15 a 29
+
+4 - Taxa de atendimento:
+
+• Atendimento em CAPS / acesso a tratamento
 
 
 
