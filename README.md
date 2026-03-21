@@ -47,7 +47,34 @@ Tarefa três: Cinthia Pimentel
 
 Tarefa quatro: Caio Gabriel
 
+Saúde Mental da Juventude (15-29 anos)
 
+Objetivo: Transformar dados epidemiológicos em informações estratégicas para políticas públicas de saúde mental, focando em transtornos de humor, depressão e ansiedade no Brasil.
+
+Eixos de Análise:
+
+Idade: Divisão em três subgrupos (15-19, 20-24 e 25-29 anos), com pico de gravidade na fase adulta jovem.
+
+Gênero: Homens (maior índice de internação por substâncias); Mulheres (maior busca por atenção básica e transtornos de humor).
+
+Geografia: Foco na Região Sul e DF, que superam as médias nacionais de internação.
+
+Interseccionalidade: Vulnerabilidade crítica de jovens indígenas (suicídio) e negros (acesso ao serviço).
+
+Base de Dados:
+
+Cruzamento de dados do DataSUS (SIH, SIM e SISAB) para internações e óbitos, com a PNS/IBGE para autodeclarações e diagnósticos.
+
+
+Fontes:
+
+http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sia/cnv/qabr.def
+
+https://datasus.saude.gov.br/informacoes-de-saude-tabnet/
+
+https://pysus.readthedocs.io/en/latest/
+
+https://pysus.readthedocs.io/en/latest/databases/CNES.html
 
 
 
