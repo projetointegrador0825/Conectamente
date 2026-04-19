@@ -10,3 +10,4 @@ https://tabnet.datasus.gov.br/cgi/deftohtm.exe?ibge/cnv/popuf.def
 # DADOS DESATUALIZADOS DESDE 2012 
 
 Análise de dados Kaggle: https://www.kaggle.com/code/fecodelipe/sa-de-mental-de-estudantes-eda
+importação csv para pandas
