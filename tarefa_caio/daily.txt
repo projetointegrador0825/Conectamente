@@ -1,3 +1,12 @@
 [19/04] 
 Preparação do ambiente: instalação do pandas streamlit no VSCode
-Extração Tabnet (DataSUS)
+
+Extração Tabnet (DataSUS): 
+
+https://tabnet.datasus.gov.br/cgi/deftohtm.exe?ibge/cnv/popuf.def
+  - Linha: Município ou Região (focando na Região Sul e DF, conforme seu plano)
+  - Coluna: Faixa Etária 1 (para captar o recorte de 15 a 29 anos)
+  - Conteúdo: Internações ou óbitos.
+# DADOS DESATUALIZADOS DESDE 2012 
+
+Análise de dados Kaggle: https://www.kaggle.com/code/fecodelipe/sa-de-mental-de-estudantes-eda
