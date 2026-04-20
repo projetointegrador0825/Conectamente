@@ -13,5 +13,5 @@ Análise de dados Kaggle: https://www.kaggle.com/code/fecodelipe/sa-de-mental-de
 importação csv para pandas
 
 [20/04]
-- Utilizando o Pandas para a exploração e que o plano inclui o uso do BigQuery para armazenamento e Streamlit para a visualização final
+- Utilizando o Pandas para a exploração, plano inclui o uso do BigQuery para armazenamento e Streamlit para a visualização final
 - Upload do arquivo analises.py feito para analisar os dados disponibilizados
