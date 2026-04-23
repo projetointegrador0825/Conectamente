@@ -17,5 +17,5 @@ importação csv para pandas
   - Upload do arquivo analises.py feito para analisar os dados disponibilizados
 
 [23/04]
-  - Na minha exploração inicial, foi descobriu que os dados do Kaggle são bons para estudantes (18-24 anos), mas será necessário a busca no DataSUS para cobrir a faixa de 25-29 anos, onde a taxa de internação é crítica (719,7 casos por 100 mil).
+  - Na minha exploração inicial, foi descoberto que os dados do Kaggle são bons para estudantes (18-24 anos), mas será necessário a busca no DataSUS para cobrir a faixa de 25-29 anos, onde a taxa de internação é crítica (719,7 casos por 100 mil).
   - 
