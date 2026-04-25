@@ -1,0 +1,6 @@
+/livia-contribuicao
+│
+├── /dados_brutos       <-- Coloque aqui os arquivos baixados do IBGE e Kaggle
+├── /notebooks          <-- Onde você pode testar o código Pandas (arquivos .ipynb)
+├── script_etl.py       <-- O código que limpa e transforma os dados
+└── dados_tratados.csv  <-- O resultado final pronto para o dashboard 
