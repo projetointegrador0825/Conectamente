@@ -24,4 +24,4 @@ importação csv para pandas
 [04/05]
   -  Estruturação dos dados brutos da PNS/IBGE 
   -  Configuração do ambiente no Github para garantir organização conforme acordado em reunião online feita pelo grupo
-  -
+  -  Implementação do ambiente no Github
