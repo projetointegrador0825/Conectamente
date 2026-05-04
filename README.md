@@ -118,9 +118,12 @@ https://pysus.readthedocs.io/en/latest/databases/CNES.html
 
 • Atendimento em CAPS / acesso a tratamento
 
+Tarefa,Status,Descrição
+Extração PNS 2019,✅ Concluído,Scripts de automação para Tabelas 12.1 a 12.8.
+Tratamento DataSUS,🚧 Em Andamento,Conversão de arquivos .dbc para análise.
 
-
-
+-
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 
 
 
