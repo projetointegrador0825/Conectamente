@@ -25,3 +25,7 @@ importação csv para pandas
   -  Estruturação dos dados brutos da PNS/IBGE 
   -  Configuração do ambiente no Github para garantir organização conforme acordado em reunião online feita pelo grupo
   -  Implementação do ambiente no Github
+  -  Definição da Base de Dados: utilizando as tabelas 12.1 a 12.8 da PNS/IBGE e os scripts de consolidação para tratar esses dados
+  -  Transformações Pretendidas: código filtrará a juventude de 15 a 29 anos e focará na Região Sul e DF 
+  -  Visualizações: esses scripts são a base para o dashboard no Streamlit que mostrará tipos de transtorno e taxas de atendimento
+  -  Consolidação das tabelas realizadas
