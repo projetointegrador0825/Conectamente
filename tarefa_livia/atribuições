@@ -5,26 +5,29 @@
 ├── script_etl.py       <-- O código que limpa e transforma os dados
 └── dados_tratados.csv  <-- O resultado final pronto para o dashboard 
 
-📝 Minha Contribuição: 
+# Minha Contribuição Atualizada: Etapa 2 (ETL & Dashboard)
+Responsável: Livia Castro
 
-Etapa 2 - Processamento de Dados (ETL)
+Nesta etapa, realizei a integração completa dos dados e a criação da interface de visualização:
 
-Nesta etapa, foquei-me na extração e transformação dos dados brutos sobre saúde mental:
+Extração e Unificação de Dados (Multi-fonte):
 
-Extração:
+Leitura e processamento de dados globais (Kaggle - CSV) e dados nacionais (IBGE/Excel - XLSX).
 
-Coleta de microdados do IBGE (PNS 2019) e dataset de Saúde Mental de Estudantes (Kaggle).
+Criação de um script de unificação que consolida diferentes fontes em um único banco de dados padronizado (dados_unificados.csv).
 
-Organização dos ficheiros brutos na pasta /dados.
+Transformação Avançada (Python & Pandas):
 
-Transformação (Python & Pandas):
+Tradução e Limpeza: Padronização de termos técnicos e tradução de indicadores de saúde mental.
 
-Limpeza: Removi colunas irrelevantes para o foco do dashboard.
+Engenharia de Dados: Conversão de respostas qualitativas (Yes/No) em dados quantitativos para cálculo exato de porcentagens e médias de prevalência.
 
-Tradução: Traduzi os nomes das colunas de Inglês para Português para facilitar a compreensão do grupo.
+Categorização: Criação de etiquetas de "Origem" para permitir a comparação direta entre o cenário brasileiro e o global.
 
-Padronização: Tratei os dados para garantir que categorias como "Género" e "Depressão" estivessem prontas para análise estatística.
+Desenvolvimento do Dashboard (Streamlit & Plotly):
 
-Carga:
+Construção de uma aplicação interativa utilizando Streamlit.
 
-Geração do ficheiro dados_estudantes_limpos.csv, que serve de base para os gráficos do Dashboard em Streamlit.
+Desenvolvimento de gráficos de barras horizontais dinâmicos para facilitar a leitura dos indicadores.
+
+Implementação de navegação por abas para separar a "Visão Geral" da "Análise Comparativa Brasil vs Mundo".
