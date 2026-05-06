@@ -4,3 +4,27 @@
 ├── /notebooks          <-- Onde você pode testar o código Pandas (arquivos .ipynb)
 ├── script_etl.py       <-- O código que limpa e transforma os dados
 └── dados_tratados.csv  <-- O resultado final pronto para o dashboard 
+
+📝 Minha Contribuição: 
+
+Etapa 2 - Processamento de Dados (ETL)
+
+Nesta etapa, foquei-me na extração e transformação dos dados brutos sobre saúde mental:
+
+Extração:
+
+Coleta de microdados do IBGE (PNS 2019) e dataset de Saúde Mental de Estudantes (Kaggle).
+
+Organização dos ficheiros brutos na pasta /dados.
+
+Transformação (Python & Pandas):
+
+Limpeza: Removi colunas irrelevantes para o foco do dashboard.
+
+Tradução: Traduzi os nomes das colunas de Inglês para Português para facilitar a compreensão do grupo.
+
+Padronização: Tratei os dados para garantir que categorias como "Género" e "Depressão" estivessem prontas para análise estatística.
+
+Carga:
+
+Geração do ficheiro dados_estudantes_limpos.csv, que serve de base para os gráficos do Dashboard em Streamlit.
