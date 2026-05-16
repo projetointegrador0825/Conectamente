@@ -4,3 +4,4 @@ google-cloud-bigquery
 google-auth
 google-auth-oauthlib
 plotly
+db-dtypes
