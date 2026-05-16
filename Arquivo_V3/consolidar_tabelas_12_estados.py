@@ -1,0 +1,208 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Script para consolidar a SEGUNDA ABA (Grandes Regiões e Unidades da Federação)
+das Tabelas 12.1 a 12.8 em um formato tabular estruturado.
+"""
+
+import openpyxl
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils import get_column_letter
+import os
+
+
+def consolidar_tabelas_regioes_uf(diretorio_origem=None):
+    """
+    Consolida as Tabelas 12.1 a 12.8 (segunda aba) em um arquivo Excel estruturado
+    com Grandes Regiões e Unidades da Federação.
+    
+    Args:
+        diretorio_origem (str): Diretório contendo os arquivos. Se None, usa o diretório atual.
+    """
+    
+    if diretorio_origem is None:
+        diretorio_origem = "/Users/amartins/gitlab"
+    
+    # Arquivos a processar com suas informações
+    arquivos = [
+        ("Tabelas 12.1.xlsx", "12.1.2", "NÃO_TEM_AMIGO_PROXIMO"),
+        ("Tabelas 12.2.xlsx", "12.2.2", "MUITO_PREOCUPADO"),
+        ("Tabelas 12.3.xlsx", "12.3.2", "TRISTE"),
+        ("Tabelas 12.4.xlsx", "12.4.2", "SOZINHO"),
+        ("Tabelas 12.5.xlsx", "12.5.2", "PROBLEMA_CONCENTRACAO"),
+        ("Tabelas 12.6.xlsx", "12.6.2", "PROBLEMA_INSONIA"),
+        ("Tabelas 12.7.xlsx", "12.7.2", "SENTIMENTO_INUTILIDADE"),
+        ("Tabelas 12.8.xlsx", "12.8.2", "PENSAMENTO_MORTE"),
+    ]
+    
+    # Criar workbook consolidado
+    wb_consolidado = Workbook()
+    ws_consolidado = wb_consolidado.active
+    
+    # Definir cabeçalhos para segunda aba
+    cabecalhos = [
+        "tabela_origem", "nome_metrica", "faixa_etaria", "regiao", "estado", "pc",
+        "limite_inferior", "limite_superior",
+        "pc_homem", "limite_inf_homem", "limite_sup_homem",
+        "pc_mulher", "limite_inf_mulher", "limite_sup_mulher",
+        "pc_depen_publica", "limite_inf_depen_publica", "limite_sup_depen_publica",
+        "pc_depen_privada", "limite_inf_depen_privada", "limite_sup_depen_privada"
+    ]
+    
+    # Adicionar cabeçalhos
+    for col_idx, cabecalho in enumerate(cabecalhos, 1):
+        cell = ws_consolidado.cell(row=1, column=col_idx)
+        cell.value = cabecalho
+        cell.font = Font(bold=True, size=11, color="FFFFFF")
+        cell.fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+        cell.alignment = Alignment(wrap_text=True, vertical="center", horizontal="center")
+    
+    linha_atual = 2
+    thin_border = Border(
+        left=Side(style='thin'),
+        right=Side(style='thin'),
+        top=Side(style='thin'),
+        bottom=Side(style='thin')
+    )
+    
+    # Definir mapeamento de regiões e seus estados
+    regioes_validas = ["Brasil", "Norte", "Nordeste", "Sudeste", "Sul", "Centro-Oeste"]
+    estados_por_regiao = {
+        "Norte": ["Rondônia", "Acre", "Amazonas", "Roraima", "Pará", "Amapá", "Tocantins"],
+        "Nordeste": ["Maranhão", "Piauí", "Ceará", "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe", "Bahia"],
+        "Sudeste": ["Minas Gerais", "Espírito Santo", "Rio de Janeiro", "São Paulo"],
+        "Sul": ["Paraná", "Santa Catarina", "Rio Grande do Sul"],
+        "Centro-Oeste": ["Mato Grosso do Sul", "Mato Grosso", "Goiás", "Distrito Federal"]
+    }
+    
+    # Processar cada arquivo
+    for arquivo_name, tabela_origem, nome_metrica in arquivos:
+        caminho = os.path.join(diretorio_origem, arquivo_name)
+        
+        if os.path.exists(caminho):
+            try:
+                wb = openpyxl.load_workbook(caminho, data_only=True)
+                
+                # Pegar a SEGUNDA aba (índice 1)
+                if len(wb.sheetnames) > 1:
+                    ws = wb.worksheets[1]
+                else:
+                    print(f"⚠ {arquivo_name} não possui segunda aba, pulando...")
+                    continue
+                
+                # Coletar todas as linhas de dados
+                dados = []
+                for row in ws.iter_rows(values_only=True):
+                    dados.append(row)
+                
+                # Procurar pela primeira faixa etária para encontrar início dos dados reais
+                inicio_dados = 0
+                for idx, row in enumerate(dados):
+                    if row and any(faixa in str(row[0]) for faixa in ["13 a 17 anos", "13 a 15 anos", "16 e 17 anos"]):
+                        inicio_dados = idx
+                        break
+                
+                # Processar dados da segunda aba
+                regiao_atual = "Brasil"
+                
+                for row_idx in range(inicio_dados, len(dados)):
+                    row = dados[row_idx]
+                    
+                    if not row or all(cell is None for cell in row):
+                        continue
+                    
+                    item = str(row[0]).strip() if row[0] else ""
+                    
+                    # Pular linhas de rodapé/fonte
+                    if item.startswith("Fonte:"):
+                        continue
+                    
+                    # Detectar região
+                    if item in regioes_validas:
+                        regiao_atual = item
+                    
+                    # Processar dados de região Brasil ou estados
+                    if item and (item in regioes_validas or any(
+                        item == estado 
+                        for estados in estados_por_regiao.values() 
+                        for estado in estados
+                    )):
+                        # Verificar se tem valores numéricos reais na linha
+                        tem_valores = False
+                        if len(row) > 1:
+                            for col_idx in range(1, min(len(row), 17)):
+                                if isinstance(row[col_idx], (int, float)):
+                                    tem_valores = True
+                                    break
+                        
+                        # Se não tem valores, pular
+                        if not tem_valores:
+                            continue
+                        
+                        # Se for Brasil ou uma região existente
+                        if item in regioes_validas:
+                            unidade_fed = None
+                            regiao = item
+                        else:
+                            # É um estado, associar à região atual
+                            unidade_fed = item
+                            regiao = regiao_atual
+                        
+                        # Montar linha consolidada
+                        nova_linha = [
+                            tabela_origem,
+                            nome_metrica,
+                            "13 a 17 anos",
+                            regiao,
+                            unidade_fed
+                        ]
+                        
+                        # Adicionar valores (começando da coluna 1, pulando a coluna 0 que é o nome)
+                        if len(row) > 1:
+                            for col_idx in range(1, min(len(row), 17)):
+                                valor = row[col_idx]
+                                if isinstance(valor, (int, float)):
+                                    nova_linha.append(round(valor, 1))
+                                else:
+                                    nova_linha.append(valor)
+                        
+                        # Preencher linhas faltantes
+                        while len(nova_linha) < len(cabecalhos):
+                            nova_linha.append(None)
+                        
+                        # Escrever linha no workbook consolidado
+                        for col_idx, valor in enumerate(nova_linha[:len(cabecalhos)], 1):
+                            cell = ws_consolidado.cell(row=linha_atual, column=col_idx)
+                            cell.value = valor
+                            cell.border = thin_border
+                            cell.alignment = Alignment(wrap_text=True, vertical="center")
+                            if col_idx > 4 and isinstance(valor, (int, float)):
+                                cell.number_format = '0.0'
+                        
+                        linha_atual += 1
+                print(f"✓ {arquivo_name} (aba {ws.title}) processado")
+            except Exception as e:
+                print(f"✗ Erro em {arquivo_name}: {e}")
+        else:
+            print(f"✗ Arquivo não encontrado: {arquivo_name}")
+    
+    # Ajustar largura das colunas
+    for col_idx in range(1, len(cabecalhos) + 1):
+        col_letter = get_column_letter(col_idx)
+        if col_idx <= 4:
+            ws_consolidado.column_dimensions[col_letter].width = 25
+        else:
+            ws_consolidado.column_dimensions[col_letter].width = 15
+    
+    # Salvar arquivo
+    output_path = os.path.join(diretorio_origem, "Tabelas_12_Consolidadas_Estados.xlsx")
+    wb_consolidado.save(output_path)
+    print(f"\n✓ Arquivo consolidado salvo em: {output_path}")
+    
+    return output_path
+
+
+if __name__ == "__main__":
+    consolidar_tabelas_regioes_uf()

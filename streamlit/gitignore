@@ -1,0 +1,27 @@
+# ── Credenciais do Google Cloud ───────────────────────────────────────────
+# Arquivo JSON da Service Account — NUNCA commitar.
+projeto-integrador-sm-bc2477987290.json
+
+# ── Secrets do Streamlit ──────────────────────────────────────────────────
+# Contém as credenciais em formato TOML para uso local e no Community Cloud.
+# Documentação: https://docs.streamlit.io/develop/tutorials/databases/bigquery
+.streamlit/secrets.toml
+
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# ── Ambientes virtuais ────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Sistemas operacionais ─────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
