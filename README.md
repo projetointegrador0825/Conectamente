@@ -129,6 +129,11 @@ Com a arquitetura de dados finalizada e os dados devidamente povoados no BigQuer
 | Modelagem e Carga no BigQuery | ✅ Concluído | Data Lake estruturado e pronto para consumo. |
 | **Integração e Interface Streamlit** | 🚧 Em Andamento | Conexão do BigQuery ao dashboard interativo em Python. |
 
+## 🚀 Alterações feitas ao longo do projeto:
+
+Devido a falta de informações de alguns dados, optamos por uma nova linha de pesquisa. Dessa forma a faixa etária dos jovens estudados nesse projeto foram entre 13-17 anos.
+Foi utilizado a PNS 2019 como base de dados final.
+
 ---
 🛠️ **Tecnologias Utilizadas na Camada de Dados:**
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Google BigQuery](https://img.shields.io/badge/Google%20BigQuery-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
