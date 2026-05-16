@@ -127,7 +127,7 @@ Com a arquitetura de dados finalizada e os dados devidamente povoados no BigQuer
 | Extração e Normalização PNS 2019 | ✅ Concluído | Scripts de automação para Tabelas 12 executados com sucesso. |
 | Tratamento e Carga DataSUS (SIH/SIM) | ✅ Concluído | Dados de internação e óbitos integrados à base. |
 | Modelagem e Carga no BigQuery | ✅ Concluído | Data Lake estruturado e pronto para consumo. |
-| **Integração e Interface Streamlit** | 🚧 Em Andamento | Conexão do BigQuery ao dashboard interativo em Python. |
+| **Integração e Interface Streamlit** | ✅ Concluído | Conexão do BigQuery ao dashboard interativo em Python. |
 
 ## 🚀 Alterações feitas ao longo do projeto:
 
@@ -138,8 +138,8 @@ Foi utilizado a PNS 2019 como base de dados final.
 🛠️ **Tecnologias Utilizadas na Camada de Dados:**
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Google BigQuery](https://img.shields.io/badge/Google%20BigQuery-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
 
-LINK FINAL DO PROJETO:
-https://projeto-integrador-grupo26-g8zzyr98qhfptz3cb7shhu.streamlit.app
+## LINK FINAL DO PROJETO:
+* https://projeto-integrador-grupo26-g8zzyr98qhfptz3cb7shhu.streamlit.app
 
 
 
