@@ -1,45 +1,19 @@
-"""
-╔══════════════════════════════════════════════════════════════════════════╗
-║           DASHBOARD IBGE — Análise Regional de Métricas                 ║
-║                                                                          ║
-║  Como rodar:                                                             ║
-║    streamlit run dashboard.py                                            ║
-║                                                                          ║
-║  Estrutura do arquivo (navegue pelos blocos):                            ║
-║    [1] IMPORTS & CONFIGURAÇÕES GLOBAIS                                   ║
-║    [2] CONEXÃO COM O BIGQUERY E CARREGAMENTO DE DADOS                   ║
-║    [3] COMPONENTES REUTILIZÁVEIS (filtros, botão voltar)                 ║
-║    [4] PÁGINAS DOS GRÁFICOS                                              ║
-║        → pagina_genero()                                                 ║
-║        → pagina_dependencia()                                            ║
-║        → pagina_faixa_etaria()                                           ║
-║        → pagina_pizza_estados()                                          ║
-║    [5] PÁGINA INICIAL (HOME) com botões de navegação                     ║
-║    [6] ROTEADOR — decide qual página exibir                              ║
-╚══════════════════════════════════════════════════════════════════════════╝
-"""
 
-# ══════════════════════════════════════════════════════════════════════════
 # [1] IMPORTS & CONFIGURAÇÕES GLOBAIS
-# ══════════════════════════════════════════════════════════════════════════
 
 import streamlit as st          # Framework principal da aplicação web
-import pandas as pd             # Manipulação de dados em tabelas (DataFrames)
+import pandas as pd             # Manipulação de daddos em tabelas (DataFrames)
 import plotly.express as px     # Geração de gráficos interativos
 
 from google.cloud import bigquery               # Cliente do BigQuery (banco de dados Google)
 from google.oauth2 import service_account       # Autenticação com conta de serviço Google
 
-# ── Credenciais via Streamlit Secrets ─────────────────────────────────────
-# As credenciais são lidas de .streamlit/secrets.toml (localmente) ou dos
-# Secrets configurados no Streamlit Community Cloud (em produção).
-# O arquivo secrets.toml e o JSON original NUNCA devem ser commitados —
-# ambos estão listados no .gitignore.
+
 # Padrão recomendado em:
 #   https://docs.streamlit.io/develop/tutorials/databases/bigquery
 GCP_CREDENTIALS = st.secrets["gcp_service_account"]
 
-# ── Query SQL que será executada no BigQuery ──────────────────────────────
+# ── Query SQL que será executada no BigQuery 
 # Busca todas as colunas necessárias para os três gráficos do dashboard.
 QUERY_SQL = """
 SELECT
@@ -54,12 +28,8 @@ SELECT
 FROM `projeto-integrador-sm.dados_ibge.regioes`
 """
 
-# ── Query SQL — Prevalência por ESTADO ───────────────────────────────────
-# Tabela com colunas confirmadas:
-#   tabela_origem, nome_metrica, faixa_etaria, regiao, estado,
-#   pc, limite_inferior, limite_superior,
-#   pc_homem, limite_inf_homem, limite_sup_homem, pc_mulher
-# Selecionamos apenas o necessário para o gráfico de pizza.
+
+# Selecionamos apenas o necessário  para o gráfico de pizza.
 QUERY_SQL_ESTADOS = """
 SELECT
     estado,
@@ -71,12 +41,7 @@ WHERE estado IS NOT NULL
   AND pc     IS NOT NULL
 """
 
-# ── Query SQL — Prevalência por CAPITAL ──────────────────────────────────
-# Tabela com colunas confirmadas:
-#   tabela_origem, nome_metrica, faixa_etaria, capital,
-#   pc, limite_inferior, limite_superior,
-#   pc_homem, limite_inf_homem, limite_sup_homem,
-#   pc_mulher, limite_inf_mulher, limite_sup_mulher
+
 # Tabela separada da de estados — capital é a coluna de localidade aqui.
 QUERY_SQL_CAPITAIS = """
 SELECT
@@ -89,10 +54,7 @@ WHERE capital IS NOT NULL
   AND pc       IS NOT NULL
 """
 
-# ── Metadados das páginas disponíveis ────────────────────────────────────
-# Cada dicionário representa um botão/página na Home.
-# Para ADICIONAR uma nova página, basta inserir um novo item aqui
-# e criar a função correspondente mais abaixo.
+#  Metadados das páginas disponíveis 
 PAGINAS = [
     {
         "chave":     "genero",          # identificador interno da página
@@ -120,14 +82,8 @@ PAGINAS = [
     },
 ]
 
-# ══════════════════════════════════════════════════════════════════════════
 # [2] CONEXÃO COM O BIGQUERY E CARREGAMENTO DE DADOS
-# ══════════════════════════════════════════════════════════════════════════
 
-# O decorator @st.cache_data faz com que o Streamlit guarde o resultado
-# desta função na memória. Assim, o BigQuery só é consultado UMA VEZ
-# por sessão — se o usuário trocar de página ou mexer nos filtros,
-# os dados já estão em cache e a tela atualiza instantaneamente.
 @st.cache_data(show_spinner="⏳ Carregando dados do BigQuery…")
 def carregar_dados() -> pd.DataFrame:
     """
@@ -142,7 +98,7 @@ def carregar_dados() -> pd.DataFrame:
         pc_depen_publica (float), pc_depen_privada (float)
     """
 
-    # Lê as credenciais a partir do secrets.toml (via st.secrets)
+    # Lê as credenciais a partir do seddcrets.toml (via st.secrets)
     credenciais = service_account.Credentials.from_service_account_info(
         GCP_CREDENTIALS
     )
@@ -156,8 +112,8 @@ def carregar_dados() -> pd.DataFrame:
     # Executa a query e converte o resultado para DataFrame do pandas
     df = cliente.query(QUERY_SQL).to_dataframe()
 
-    # ── Converte colunas numéricas ────────────────────────────────────
-    # errors='coerce' transforma valores inválidos (texto, None) em NaN
+    #  Converte colunas numéricas 
+    # errors='coerce' transforma valores inválidoss (texto, None) em NaN
     # em vez de lançar um erro que quebraria o app.
     colunas_numericas = ["pc", "pc_homem", "pc_mulher",
                          "pc_depen_publica", "pc_depen_privada"]
@@ -169,7 +125,7 @@ def carregar_dados() -> pd.DataFrame:
     # Cria alias "pc_regiao" como cópia numérica da coluna principal "pc"
     df["pc_regiao"] = df["pc"]
 
-    # ── Remove linhas com dados obrigatórios ausentes ─────────────────
+    #  Remove linhas com dados obrigatórios ausentes 
     # Uma linha sem região, faixa etária, métrica ou percentual principal
     # não tem utilidade nos gráficos; é melhor descartá-la aqui do que
     # tratar erros depois.
@@ -251,9 +207,8 @@ def carregar_dados_capitais() -> pd.DataFrame:
     return df
 
 
-# ══════════════════════════════════════════════════════════════════════════
+
 # [3] COMPONENTES REUTILIZÁVEIS
-# ══════════════════════════════════════════════════════════════════════════
 
 def renderizar_filtros(df: pd.DataFrame) -> tuple:
     """
@@ -322,15 +277,9 @@ def botao_voltar() -> None:
         st.rerun()   # força re-execução imediata do script
 
 
-# ══════════════════════════════════════════════════════════════════════════
 # [4] PÁGINAS DOS GRÁFICOS
-# ══════════════════════════════════════════════════════════════════════════
-# Cada função abaixo é uma "página" completa.
-# Elas recebem o DataFrame já filtrado por região e faixa etária
-# (a filtragem acontece no roteador [6], evitando repetição de código).
-# ──────────────────────────────────────────────────────────────────────────
 
-# ── 4a. Gênero × Métrica ──────────────────────────────────────────────────
+#  4a. Gênero × Métrica 
 
 def pagina_genero(df_filtrado: pd.DataFrame) -> None:
     """
@@ -350,7 +299,7 @@ def pagina_genero(df_filtrado: pd.DataFrame) -> None:
         "separado por gênero, para a região e faixa etária selecionadas."
     )
 
-    # ── Verificações de segurança ─────────────────────────────────────
+    #  Verificações de segurança 
     # Antes de tentar montar o gráfico, verificamos se os dados existem.
     # Isso evita erros feios na tela do usuário.
 
@@ -367,7 +316,7 @@ def pagina_genero(df_filtrado: pd.DataFrame) -> None:
         st.info("ℹ️ Sem dados para os filtros selecionados.")
         return
 
-    # ── Preparação dos dados ──────────────────────────────────────────
+    #  Preparação dos dados 
     # groupby('nome_metrica') agrupa todas as linhas com a mesma métrica.
     # .mean() calcula a média de pc_homem e pc_mulher dentro de cada grupo.
     # .reset_index() transforma o índice de volta em coluna normal.
@@ -398,7 +347,7 @@ def pagina_genero(df_filtrado: pd.DataFrame) -> None:
         st.warning("⚠️ Sem dados após processamento.")
         return
 
-    # ── Construção do gráfico ─────────────────────────────────────────
+    # ── Construção do gráfico 
     # px.bar() cria um gráfico de barras interativo.
     # barmode='group' coloca as barras de cada métrica lado a lado
     # (em vez de empilhadas).
@@ -435,7 +384,7 @@ def pagina_genero(df_filtrado: pd.DataFrame) -> None:
     st.plotly_chart(fig, use_container_width=True)
 
 
-# ── 4b. Dependência Administrativa × Métrica ──────────────────────────────
+# ── 4b. Dependência Administrativa × Métrica 
 
 def pagina_dependencia(df_filtrado: pd.DataFrame) -> None:
     """
@@ -455,7 +404,7 @@ def pagina_dependencia(df_filtrado: pd.DataFrame) -> None:
         "separado por tipo de rede (pública × privada)."
     )
 
-    # ── Verificações de segurança ─────────────────────────────────────
+    #  Verificações de segurança 
     colunas_necessarias = ["pc_depen_publica", "pc_depen_privada", "nome_metrica"]
     colunas_ausentes    = [c for c in colunas_necessarias if c not in df_filtrado.columns]
 
@@ -467,7 +416,7 @@ def pagina_dependencia(df_filtrado: pd.DataFrame) -> None:
         st.info("ℹ️ Sem dados para os filtros selecionados.")
         return
 
-    # ── Preparação dos dados ──────────────────────────────────────────
+    # ── Preparação dos dados 
     # Mesma lógica de groupby + melt explicada em pagina_genero(),
     # mas agora para as colunas de dependência administrativa.
     df_agrupado = (
@@ -492,7 +441,7 @@ def pagina_dependencia(df_filtrado: pd.DataFrame) -> None:
         st.warning("⚠️ Sem dados após processamento.")
         return
 
-    # ── Construção do gráfico ─────────────────────────────────────────
+    #  Construção do gráfico 
     fig = px.bar(
         df_longo,
         x="dependencia",
@@ -519,7 +468,7 @@ def pagina_dependencia(df_filtrado: pd.DataFrame) -> None:
     st.plotly_chart(fig, use_container_width=True)
 
 
-# ── 4c. Faixa Etária × Métrica ────────────────────────────────────────────
+#  4c. Faixa Etária × Métrica 
 
 def pagina_faixa_etaria(df_filtrado: pd.DataFrame) -> None:
     """
@@ -539,7 +488,7 @@ def pagina_faixa_etaria(df_filtrado: pd.DataFrame) -> None:
         "distribuído por faixa etária."
     )
 
-    # ── Verificações de segurança ─────────────────────────────────────
+    #  Verificações de segurança 
     colunas_necessarias = ["faixa_etaria", "nome_metrica", "pc_regiao"]
     colunas_ausentes    = [c for c in colunas_necessarias if c not in df_filtrado.columns]
 
@@ -551,7 +500,7 @@ def pagina_faixa_etaria(df_filtrado: pd.DataFrame) -> None:
         st.info("ℹ️ Sem dados para os filtros selecionados.")
         return
 
-    # ── Preparação dos dados ──────────────────────────────────────────
+    # Preparação dos dados 
     # Agrupa por DUAS colunas: faixa etária e métrica.
     # Para cada combinação, calcula a média do percentual regional.
     df_agrupado = (
@@ -565,7 +514,7 @@ def pagina_faixa_etaria(df_filtrado: pd.DataFrame) -> None:
         st.warning("⚠️ Sem dados após processamento.")
         return
 
-    # ── Construção do gráfico ─────────────────────────────────────────
+    # ── Construção do gráfico 
     fig = px.bar(
         df_agrupado,
         x="faixa_etaria",
@@ -593,7 +542,7 @@ def pagina_faixa_etaria(df_filtrado: pd.DataFrame) -> None:
     st.plotly_chart(fig, use_container_width=True)
 
 
-# ── 4d. Pizza — Prevalência por Estado / Capital ─────────────────────────
+#  4d. Pizza — Prevalência por Estado / Capital 
 
 def pagina_pizza_estados(df_estados: pd.DataFrame, df_capitais: pd.DataFrame) -> None:
     """
@@ -627,9 +576,7 @@ def pagina_pizza_estados(df_estados: pd.DataFrame, df_capitais: pd.DataFrame) ->
         "Os valores representam a média de todas as faixas etárias."
     )
 
-    # ══════════════════════════════════════════════════════════════════
     # CONTROLES DO USUÁRIO
-    # ══════════════════════════════════════════════════════════════════
 
     col_visao, col_metrica = st.columns([1.5, 2])
 
@@ -685,9 +632,7 @@ def pagina_pizza_estados(df_estados: pd.DataFrame, df_capitais: pd.DataFrame) ->
 
     st.divider()
 
-    # ══════════════════════════════════════════════════════════════════
     # FILTRAGEM DOS DADOS
-    # ══════════════════════════════════════════════════════════════════
 
     # Filtra pelo transtorno selecionado — todas as faixas etárias incluídas
     df_filtrado = df_ativo[df_ativo["nome_metrica"] == metrica_selecionada].copy()
@@ -696,7 +641,7 @@ def pagina_pizza_estados(df_estados: pd.DataFrame, df_capitais: pd.DataFrame) ->
         st.warning(f"⚠️ Sem dados para '{metrica_exibida}'.")
         return
 
-    # ── Agrupamento ───────────────────────────────────────────────────
+    # ── Agrupamento 
     # groupby(col_local) agrupa todas as linhas com o mesmo estado/capital.
     # .mean() calcula a MÉDIA de pc sobre todas as faixas etárias disponíveis.
     df_agrupado = (
@@ -712,19 +657,19 @@ def pagina_pizza_estados(df_estados: pd.DataFrame, df_capitais: pd.DataFrame) ->
         st.warning("⚠️ Sem dados após agrupamento.")
         return
 
-    # ══════════════════════════════════════════════════════════════════
+    # 
     # TÍTULO DA SEÇÃO
-    # ══════════════════════════════════════════════════════════════════
+    # 
 
     st.markdown(f"#### {metrica_exibida} por {titulo_local} — Todas as faixas etárias")
 
-    # ══════════════════════════════════════════════════════════════════
+    # 
     # GRÁFICOS LADO A LADO
-    # ══════════════════════════════════════════════════════════════════
+    # 
 
     col_esq, col_dir = st.columns(2)
 
-    # ── Gráfico esquerdo — Participação relativa (%) ──────────────────
+    #  Gráfico esquerdo — Participação relativa (%) 
     # Mostra o PESO de cada estado/capital dentro do total do indicador.
     # Útil para ver quais localidades concentram mais o transtorno.
     with col_esq:
@@ -765,7 +710,7 @@ def pagina_pizza_estados(df_estados: pd.DataFrame, df_capitais: pd.DataFrame) ->
         )
         st.plotly_chart(fig_rel, use_container_width=True)
 
-    # ── Gráfico direito — Valor real de prevalência (pc%) ─────────────
+    #  Gráfico direito — Valor real de prevalência (pc%) 
     # Mostra o PERCENTUAL REAL registrado no dataset, não a participação.
     # Útil para comparar magnitudes absolutas entre localidades.
     with col_dir:
@@ -801,7 +746,6 @@ def pagina_pizza_estados(df_estados: pd.DataFrame, df_capitais: pd.DataFrame) ->
         )
         st.plotly_chart(fig_abs, use_container_width=True)
 
-    # ══════════════════════════════════════════════════════════════════
     # TABELA DE DADOS BRUTOS (RECOLHÍVEL)
     # ══════════════════════════════════════════════════════════════════
 
@@ -821,10 +765,6 @@ def pagina_pizza_estados(df_estados: pd.DataFrame, df_capitais: pd.DataFrame) ->
             use_container_width=True,
             hide_index=True,
         )
-
-# ══════════════════════════════════════════════════════════════════════════
-# [5] PÁGINA INICIAL — HOME
-# ══════════════════════════════════════════════════════════════════════════
 
 def pagina_home() -> None:
     """
@@ -944,15 +884,7 @@ Nesta plataforma, você encontrará visualizações divididas em:
                 st.rerun()
 
 
-# ══════════════════════════════════════════════════════════════════════════
-# [6] CONFIGURAÇÃO INICIAL E ROTEADOR PRINCIPAL
-# ══════════════════════════════════════════════════════════════════════════
-# Tudo abaixo deste ponto é executado a cada re-render do Streamlit.
-# O Streamlit re-executa o script inteiro sempre que:
-#   • O usuário clica em um botão
-#   • O usuário muda um selectbox, slider, etc.
-#   • st.rerun() é chamado explicitamente
-# ──────────────────────────────────────────────────────────────────────────
+
 
 # ── Configuração da aba do navegador ─────────────────────────────────────
 # Deve ser a PRIMEIRA chamada st.* do script, senão o Streamlit lança erro.
