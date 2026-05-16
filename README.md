@@ -126,5 +126,54 @@ Tratamento DataSUS,🚧 Em Andamento,Conversão de arquivos .dbc para análise.
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 
 
+---------------------------------------------------
+
+## 👥 Equipe e Divisão de Linhas de Pesquisa
+
+O sucesso da consolidação da camada de dados do **Projeto ConectaMente** é o resultado da integração de diferentes frentes de estudo e análise epidemiológica dos integrantes do **Grupo 26**:
+
+*   **Livia Castro Alves da Silva (Tarefa 01):** Análise de base e contextualização dos índices oficiais de depressão, ansiedade e estresse a partir do Portal de Microdados do IBGE (PNS) e métricas da OPAS, com foco na vulnerabilidade de perfis estudantis e contextos educacionais.
+*   **Ryan Alves de Araujo (Tarefa 02):** Condução da meta-análise de prevalência de transtornos. Responsável pelo cruzamento histórico dos dados da PNS (2013 vs. 2019) utilizando o questionário PHQ-9 para correlacionar o salto de 178,4% na depressão de adultos jovens com variáveis socioeconômicas e comportamentais.
+*   **Cinthia Pimentel da Silva (Tarefa 03):** Análise do fluxo de ocupação da rede de saúde, mapeando as taxas de internação hospitalar na juventude com base nos Informes de Saúde Mental da Fiocruz, evidenciando o pico crítico de internações na faixa dos 25 a 29 anos (719,7 casos por 100 mil hab.).
+*   **Caio Gabriel Lemos Neris (Tarefa 04):** Engenharia de dados, ETL e modelagem dimensional. Responsável pelo desenvolvimento dos pipelines em Python para extração de arquivos `.dbc` (DataSUS/Tabnet) e `.xlsx` (IBGE), unificação dos recortes geográficos e estruturação da base analítica final.
+
+---
+
+## 🗄️ Armazenamento e Disponibilidade dos Dados (BigQuery)
+
+Para garantir escalabilidade, alta performance nas consultas do dashboard (Streamlit) e permitir que os cruzamentos entre a **PNS 2019**, os dados de internação da **Fiocruz/DataSUS** e as métricas do **PHQ-9** ocorressem sem gargalos, toda a camada de dados limpa e normalizada foi integrada ao ecossistema de dados do Google Cloud.
+
+A base de dados oficial e consolidada do projeto está publicamente disponível e hospedada no **Google BigQuery**. Você pode acessar o repositório de dados, visualizar o esquema das tabelas e executar queries estruturadas diretamente pelo link abaixo:
+
+🔗 [**Acessar Banco de Dados ConectaMente no Google BigQuery**](https://console.cloud.google.com/bigquery?project=conectamente-grupo26)
+
+### 📊 Estrutura das Tabelas Disponíveis no Data Lake:
+*   `conectamente-grupo26.pns_2019.consolidado_regioes`: Indicadores de autodeclaração, tristeza e solidão divididos pelas Grandes Regiões.
+*   `conectamente-grupo26.pns_2019.consolidado_estados`: Dados refinados por Unidade da Federação (UF), com foco analítico na Região Sul e Distrito Federal.
+*   `conectamente-grupo26.pns_2019.consolidado_capitais`: Granularidade a nível municipal/capitais para cruzamento com a cobertura local dos CAPS.
+*   `conectamente-grupo26.meta_analise.prevalencia_phq9`: Dados de severidade e evolução temporal da depressão na faixa de 15 a 29 anos.
+*   `conectamente-grupo26.fiocruz.taxas_internacao`: Histórico de morbidade e internações hospitalares por transtornos mentais e uso de substâncias.
+
+---
+
+## 🚀 Próximos Passos e Cronograma Atualizado
+
+Com a arquitetura de dados finalizada e os dados devidamente povoados no BigQuery, o projeto avança para a sua última etapa de engenharia e design.
+
+| Tarefa / Linha de Entrega | Status | Descrição |
+| :--- | :--- | :--- |
+| Extração e Normalização PNS 2019 | ✅ Concluído | Scripts de automação para Tabelas 12 executados com sucesso. |
+| Tratamento e Carga DataSUS (SIH/SIM) | ✅ Concluído | Dados de internação e óbitos integrados à base. |
+| Modelagem e Carga no BigQuery | ✅ Concluído | Data Lake estruturado e pronto para consumo. |
+| **Integração e Interface Streamlit** | 🚧 Em Andamento | Conexão do BigQuery ao dashboard interativo em Python. |
+
+---
+🛠️ **Tecnologias Utilizadas na Camada de Dados:**
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Google BigQuery](https://img.shields.io/badge/Google%20BigQuery-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
+
+LINK FINAL DO PROJETO:
+https://projeto-integrador-grupo26-g8zzyr98qhfptz3cb7shhu.streamlit.app
+
+
 
 
